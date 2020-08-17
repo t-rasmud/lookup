@@ -19,6 +19,8 @@ import org.plumelib.util.EntryReader;
 import org.plumelib.util.RegexUtil;
 import org.plumelib.util.UtilPlume;
 
+import org.checkerframework.checker.determinism.qual.*;
+
 /**
  * Lookup searches a set of files, much like {@code grep} does. However, Lookup searches by entry
  * (by default, paragraphs) rather than by line, respects comments (ignores matches within them),
@@ -231,7 +233,7 @@ public final class Lookup {
   public static void main(String[] args) throws IOException {
 
     Options options = new Options(usageString, Lookup.class);
-    String[] keywords = options.parse(true, args);
+    @Det String[] keywords = options.parse(true, args);
 
     // TODO: validate arguments.  Check that various options are @Regex or @Regex(1).
 
@@ -275,7 +277,7 @@ public final class Lookup {
 
     // Open the first readable root file
     EntryReader reader = null;
-    String[] entryFiles = entry_file.split(":");
+    @Det String[] entryFiles = entry_file.split(":");
     List<Exception> fileErrors = new ArrayList<>();
     for (String ef : entryFiles) {
       ef = UtilPlume.expandFilename(ef);
