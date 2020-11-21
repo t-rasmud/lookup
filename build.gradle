@@ -60,7 +60,9 @@ checkerFramework {
     '-Werror',
     // '-AcheckPurityAnnotations',
     '-ArequirePrefixInWarningSuppressions',
-    '-AwarnUnneededSuppressions', '-AwarnUnneededSuppressionsExceptions=purity|method.guarantee.violated',
+    '-AwarnUnneededSuppressions',
+    // ":deterministic" is for the purity checker
+    '-AwarnUnneededSuppressionsExceptions=purity|method.guarantee.violated|:deterministic',
     // '-AusePolyDefault',
   ]
 }
